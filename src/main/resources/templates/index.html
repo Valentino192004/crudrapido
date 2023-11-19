@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crud Tabla Producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-4">
+        <a th:href="@{/new}" class="btn btn-primary">Nuevo</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>idProducto</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Fecha Creacion</th>
+                    <th>Fecha Actualizacion</th>
+                 </tr>
+            </thead>
+            <tbody>
+            <tr th:each="producto:${productos}">
+                <td th:text="${producto.id}"></td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.descripcion}"></td>
+                <td th:text="${producto.precio}"></td>
+                <td th:text="${producto.stock}"></td>
+                <td th:text="${producto.fechaCreacion}"></td>
+                <td th:text="${producto.fechaActualizacion}"></td>
+                <td>
+                    <a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
+                    <a th:onclick="eliminar([[$producto.id]])" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script> src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"</script>
+    <script> src="funciones.js"</script>
+</body>
+</html>
